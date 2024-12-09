@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "57cf24e8-efdc-4bda-b02b-406c5d7e6f5e",
+		"name": "Rodud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2573933"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}me",
+									"host": [
+										"{{baseURL}}me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update profile",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "test@test.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}profile",
+									"host": [
+										"{{baseURL}}profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Account",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}profile",
+									"host": [
+										"{{baseURL}}profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"\r",
+									"if(res.token)\r",
+									"    pm.environment.set(\"access_token\", res.token);\r",
+									"\r",
+									"pm.collectionVariables.set(\"access_token\", res.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@user.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}login",
+							"host": [
+								"{{baseURL}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}logout",
+							"host": [
+								"{{baseURL}}logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tetst",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}register",
+							"host": [
+								"{{baseURL}}register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "List Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}orders?page=1",
+							"host": [
+								"{{baseURL}}orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "item",
+									"value": "item",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "size",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "weight",
+									"type": "text"
+								},
+								{
+									"key": "pickup_location",
+									"value": "pickup_location",
+									"type": "text"
+								},
+								{
+									"key": "delivery_location",
+									"value": "delivery_location",
+									"type": "text"
+								},
+								{
+									"key": "pickup_at",
+									"value": "2024-12-12",
+									"type": "text"
+								},
+								{
+									"key": "delivery_at",
+									"value": "2024-12-12",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}orders",
+							"host": [
+								"{{baseURL}}orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders Messages",
+			"item": [
+				{
+					"name": "List Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}orders/:order/messages",
+							"host": [
+								"{{baseURL}}orders"
+							],
+							"path": [
+								":order",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "order",
+									"value": "26"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message",
+									"value": "rrrrrr",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}orders/:orderID/messages",
+							"host": [
+								"{{baseURL}}orders"
+							],
+							"path": [
+								":orderID",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "orderID",
+									"value": "26"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"let letters = {\r",
+					"    'ar' : 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي',\r",
+					"    'en' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'\r",
+					"}\r",
+					"\r",
+					"const generateRandomNumber = (n) => [...Array(n)].map(_=>Math.random()*10|0).join``\r",
+					"\r",
+					"const generateRandomString = (n, lang = 'en') =>  [...Array(n)].map(_ => letters[lang][Math.floor(Math.random() *  letters[lang].length)]).join('');\r",
+					"\r",
+					"\r",
+					"\r",
+					"pm.request.headers.add({key: 'Accept', value: 'application/json' })\r",
+					"pm.request.headers.add({key: 'Content-Type', value: 'application/json' })\r",
+					"console.log(pm.request?.auth?.type != 'noauth');\r",
+					"if (pm.request?.auth?.type !='noauth' && \r",
+					"    pm.collectionVariables.get('access_token')){\r",
+					"        pm.request.headers.add({key: 'Authorization', value: 'bearer {{access_token}}' })    \r",
+					"    }\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://rodud-backend.test/api/",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

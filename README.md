@@ -28,45 +28,53 @@ To set up the project locally, follow these steps:
 
    Ensure you have [Composer](https://getcomposer.org/) installed.
    ```bash
-   composer install   ```
+   composer install
+   ```
 
 3. **Install Node.js dependencies:**
 
    Ensure you have [Node.js](https://nodejs.org/) installed.
    ```bash
-   npm install   ```
+   npm install
+   ```
 
 4. **Environment setup:**
 
    Copy the `.env.example` file to `.env` and configure your environment variables, especially the database and Vonage settings.
    ```bash
-   cp .env.example .env   ```
+   cp .env.example .env
+   ```
 
 5. **Generate application key:**
    ```bash
-   php artisan key:generate   ```
+   php artisan key:generate
+   ```
 
 6. **Run database migrations:**
 
    Ensure your database is set up and configured in the `.env` file, then run:
    ```bash
-   php artisan migrate   ```
+   php artisan migrate
+   ```
 
 7. **Seed the database:**
 
    To populate the database with initial data, run the seeder:
    ```bash
-   php artisan db:seed   ```
+   php artisan db:seed
+   ```
 
    This will create default users, orders, and messages as defined in the `DatabaseSeeder` class.
 
 8. **Build frontend assets:**
    ```bash
-   npm run dev   ```
+   npm run dev
+   ```
 
 9. **Start the development server:**
    ```bash
-   php artisan serve   ```
+   php artisan serve
+   ```
 
    You can now access the application at `http://localhost:8000`.
 
@@ -82,3 +90,7 @@ To set up the project locally, follow these steps:
 - **Register:** `POST /api/register`
 - **Login:** `POST /api/login`
 - **Logout:** `POST /api/logout`
+
+## User to login 
+- admin : admin@admin.com : password
+- user : user@user.com : password

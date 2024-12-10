@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create a specific admin user
-        User::factory()
+        $admin = User::factory()
             ->asAdmin()
             ->create([
                 'name' => 'Admin User',
@@ -25,15 +25,15 @@ class DatabaseSeeder extends Seeder
             ]);
 
         // Create some normal users
-        $users = User::factory(5)->create(); // 5 normal users
+        $users = User::factory(3)->asUser()->create(); // 3 normal users
 
         // Create orders for each normal user
         foreach ($users as $user) {
-            $orders = Order::factory(5)->create(['user_id' => $user->id]);
+            $orders = Order::factory(3)->create(['user_id' => $user->id]);
 
             // Create messages for each order
             foreach ($orders as $order) {
-                OrderMessage::factory(5)->create(['order_id' => $order->id]);
+                OrderMessage::factory(3)->create(['order_id' => $order->id, 'admin_id' => $admin->id]);
             }
         }
 

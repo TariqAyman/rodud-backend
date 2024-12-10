@@ -14,6 +14,6 @@ class OrderPolicy
      */
     public function view(User $user, Order $order): bool
     {
-        return $user->type == UserType::Admin || $user->id == $order->user_id;
+        return $user->type == UserType::Admin->value || $user->id == $order->user_id;
     }
 }

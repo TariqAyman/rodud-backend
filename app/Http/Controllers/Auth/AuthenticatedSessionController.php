@@ -26,6 +26,12 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        if (!$request->user()->isAdmin()) {
+            return redirect()
+                ->intended(route('login', absolute: false))
+                ->withErrors(['email' => 'You are not authorized to access this page.']);
+        }
+
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));

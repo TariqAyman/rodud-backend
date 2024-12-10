@@ -52,21 +52,21 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->type == UserType::Admin;
+        return $this->type == UserType::Admin->value;
     }
 
     public function isUser(): bool
     {
-        return $this->type == UserType::User;
+        return $this->type == UserType::User->value;
     }
 
     public function scopeAdmin(Builder $query): Builder
     {
-        return $query->where('type', UserType::Admin);
+        return $query->where('type', UserType::Admin->value);
     }
 
     public function scopeUser(Builder $query): Builder
     {
-        return $query->where('type', UserType::User);
+        return $query->where('type', UserType::User->value);
     }
 }

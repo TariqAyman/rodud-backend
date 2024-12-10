@@ -16,9 +16,13 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): JsonResource
+    public function store(LoginRequest $request): JsonResponse|UserResource
     {
         $request->authenticate();
+
+        if (!$request->user()->isUser()) {
+            return response()->json(['message' => 'You are not authorized to access this page.'], 401);
+        }
 
         $token = $request->user()->createToken('api_token')->plainTextToken;
 
@@ -32,7 +36,7 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->user()->currentAccessToken->delete();
+        $request->user()->currentAccessToken()->delete();
 
         return response()->noContent();
     }

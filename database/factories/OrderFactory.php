@@ -27,7 +27,7 @@ class OrderFactory extends Factory
         ];
 
         return [
-            'user_id' => User::factory(), // creates a related user by default
+            'user_id' => User::factory()->asUser()->create(), // creates a related user by default
             'pickup_location' => $this->faker->streetAddress(),
             'delivery_location' => $this->faker->streetAddress(),
             'item' => $this->faker->word(),

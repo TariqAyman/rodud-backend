@@ -20,7 +20,7 @@ class OrderMessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'admin_id' => User::factory()->asAdmin(), // creates a related user by default
+            'admin_id' => User::factory()->asAdmin()->create(), // creates a related user by default
             'order_id' => Order::factory(),
             'message' => $this->faker->sentence(),
         ];
